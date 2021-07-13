@@ -53,3 +53,8 @@ insert into sc values(1,2,90),
 	(7,3,98);
 */
 
+-- select sid,avg(score) as avgScore from sc group by sid having avg(score)>=60;
+SELECT r.sid,s.sname,r.avgScore FROM 
+	(SELECT sid,AVG(score) AS avgScore FROM sc GROUP BY sid HAVING AVG(score)>=60)r 
+	LEFT JOIN student s
+	ON r.sid=s.sid;
